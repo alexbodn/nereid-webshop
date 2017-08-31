@@ -528,7 +528,8 @@
           var template = $("#cart-html-append").html();
           $("li.my-cart").html(_.template(template, {'user_status': data.status}));
           userDataCallbacks.fire(data);
-          var cart_items=data.status.cart.lines;
+          var empty_cart = [];
+          var cart_items=data.status.cart_size == '0' ? empty_cart : data.status.cart.lines;
           disableBuyNow(cart_items);
           $('.remove_product, .remove_from_cart').on('click', function(e){
             var delUrl = $(this).data("url");
